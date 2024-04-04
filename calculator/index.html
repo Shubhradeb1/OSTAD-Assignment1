@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Simple Calculator</title>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Simple Calculator</h1>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <input type="text" id="number1" class="form-control mb-3" placeholder="Enter first number">
+                <select id="operation" class="form-control mb-3">
+                    <option value="+">+</option>
+                    <option value="-">-</option>
+                    <option value="*">*</option>
+                    <option value="/">/</option>
+                </select>
+                <input type="text" id="number2" class="form-control mb-3" placeholder="Enter second number">
+                <button onclick="calculate()" class="btn btn-primary btn-block">Calculate</button>
+                <div id="result" class="mt-3"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    
+function calculate() {
+    const number1 = parseFloat(document.getElementById('number1').value);
+    const number2 = parseFloat(document.getElementById('number2').value);
+    const operation = document.getElementById('operation').value;
+    let result;
+
+    if (isNaN(number1) || isNaN(number2)) {
+        document.getElementById('result').innerText = 'Invalid input';
+        return;
+    }
+
+    switch (operation) {
+         case '+':
+            result = number1 + number2;
+            break;
+        case '-':
+            result = number1 - number2;
+            break;
+        case '*':
+            result = number1 * number2;
+            break;
+        case '/':
+            if (number2!== 0) {
+                result = number1 / number2;
+            } else {
+                document.getElementById('result').innerText = 'Error: Division by zero';
+                return;
+            }
+            break;
+        default:
+            document.getElementById('result').innerText = 'Invalid operation';
+            return;
+    }
+
+    document.getElementById('result').innerText = "Result : " + result;
+}
+
+    </script>
+</body>
+</html>
